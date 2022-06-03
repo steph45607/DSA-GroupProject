@@ -4,6 +4,7 @@
 #include "linear.cpp"
 #include "randArray.cpp"
 #include "binary.cpp"
+#include "hashg.cpp"
 using namespace std;
 
     
@@ -29,23 +30,41 @@ int main(){
     //cout << elapsed_time << endl;
 
     double total_time = 0;
-    // srand((unsigned) time(0));
 
-    for(int i = 0; i < 10; i++){
-        randTestNumber = rand() % 20 + 1;
-        auto start = chrono::steady_clock::now();
+        randTestNumber = rand() % 1000 + 1;
+        auto linear_start = chrono::steady_clock::now();
+        linearSearch(randArray(1000), 1000, randTestNumber);
+
+        // cout << randTestNumber << endl;
+
+        auto linear_end = chrono::steady_clock::now();
+
+        double linear_time = double(chrono::duration_cast<chrono::nanoseconds> (linear_end-linear_start).count());
         
-        // cout << linearSearch(randArray(20), 20, randTestNumber) << endl;
-        cout << binarySearch(randArray(20), 0, 20-1, randTestNumber) << endl;
-        cout << randTestNumber << endl;
+// binary
+        randTestNumber = rand() % 1000 + 1;
+        auto binary_start = chrono::steady_clock::now();
+        
+        binarySearch(randArray(1000), 0, 1000-1, randTestNumber);
+        // cout << randTestNumber << endl;
 
-        auto end = chrono::steady_clock::now();
+        auto binary_end = chrono::steady_clock::now();
 
-        elapsed_time = double(chrono::duration_cast<chrono::nanoseconds> (end-start).count());
-        total_time += elapsed_time;
-    }
+        double binary_time = double(chrono::duration_cast<chrono::nanoseconds> (binary_end-binary_start).count());
+        
+        // hash
+        randTestNumber = rand() % 1000 + 1;
+        auto hash_start = chrono::steady_clock::now();
 
-    double avg_time = total_time/10;
-    cout << avg_time;
 
+        hash_function(randArray(1000), 1000, randTestNumber);
+        
+        // cout << randTestNumber << endl;
+
+        auto hash_end = chrono::steady_clock::now();
+
+        double hash_time = double(chrono::duration_cast<chrono::nanoseconds> (hash_end-hash_start).count());
+        cout << "\n" << linear_time << endl;
+        cout << binary_time<< endl;
+        cout << hash_time<< endl;
 }
