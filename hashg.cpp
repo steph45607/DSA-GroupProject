@@ -6,18 +6,6 @@
 #include "randArray.cpp"
 using namespace std;
 
-// Function to print an array
-// void printArray(int arr[], int n)
-// {
-// 	// Iterating and printing the array
-// 	for (int i = 0; i < n; i++)
-// 	{
-// 		cout << arr[i] << " ";
-// 	}
-// }
-
-// Function to implement the
-// quadratic probing
 
 string search(int data, int arr[], int n){
     for(int i = 0; i < n; i++){
