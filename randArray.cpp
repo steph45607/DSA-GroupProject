@@ -8,6 +8,7 @@
 #include <string>
 using namespace std;
 
+
 int* randArray(int n){
     srand((unsigned) time(0));
     int* array = new int[n];
